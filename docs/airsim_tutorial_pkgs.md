@@ -1,17 +1,17 @@
 # 低空载具的 ROS 示例教程
 
 
-这是一组 AirSim 的示例配置 [settings.json](https://github.com/OpenHUTB/air/tree/main/ros/src/airsim_tutorial_pkgs/settings)、roslaunch 和 rviz 文件，旨在帮助您了解如何在 ROS 中使用 AirSim。
+这是一组 AirSim 的示例配置 [settings.json](https://github.com/OpenHUTB/air/tree/main/ros/src/airsim_tutorial_pkgs/settings)、roslaunch 和 rviz 文件，旨在帮助您了解如何在 ROS 中使用 AirSim(环境说明：AirSim运行于Windows主机，Ros运行于Ubuntu虚拟机，需要保证两台机器网络互通)。
 有关 ROS API，请参阅 [低空载具 ROS 封装器 airsim_ros_pkgs](./airsim_ros_pkgs.md) 。
 
 
 ## 设置
 
-确保 [airsim_ros_pkgs 设置](airsim_ros_pkgs.md) 已完成并且先决条件已安装。
+确保 [airsim_ros_pkgs 设置](airsim_ros_pkgs.md) 已完成并且先决条件已安装，注意：请将下文的 PATH_TO 替换为你实际的Airsim源码存放路径。
 
 ```shell
 cd PATH_TO/air/ros
-catkin_make airsim_tutorial_pkgs
+catkin_make
 ```
 
 如果您的默认 GCC 版本不是 8 或更高版本（请使用 `gcc --version` 检查），则编译将失败。在这种情况下，请明确使用 `gcc-8`，如下所示：
@@ -40,10 +40,10 @@ cp settings/front_stereo_and_center_mono.json ~/Documents/AirSim/settings.json
 
  启动 ROS 节点：
 
-```shell
+```bash
 # 使用 host 参数在不同机器上运行
 # roslaunch airsim_ros_pkgs airsim_node.launch output:=screen host:=172.21.108.47
-roslaunch airsim_ros_pkgs airsim_node.launch;
+roslaunch airsim_ros_pkgs airsim_node.launch
 # 在新的终端或面板
 source PATH_TO/air/ros/devel/setup.bash
 roslaunch airsim_tutorial_pkgs front_stereo_and_center_mono.launch
@@ -80,6 +80,7 @@ roslaunch airsim_tutorial_pkgs front_stereo_and_center_mono.launch
 - Settings.json - 配置文件 [twenty_five_drones.json](https://github.com/OpenHUTB/air/blob/main/ros/src/airsim_tutorial_pkgs/settings/twenty_five_drones.json) 
 
  ```shell
+ # 设置环境变量
  source PATH_TO/air/ros/devel/setup.bash
  roscd airsim_tutorial_pkgs
  # 将配置文件拷贝到用户目录下，或者 WindowsNoEditor 目录下
